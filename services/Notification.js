@@ -1,15 +1,14 @@
 const axios = require('axios');
-const {dingTalk} = require('../config');
 
 class Notification {
-    async dingTalk(title, text = null) {
+    async dingTalk({token, keyword}, title, text = null) {
         text = text || title;
 
-        if (dingTalk.keyword) {
-            text = `${dingTalk.keyword}: ${text}`;
+        if (keyword) {
+            text = `${keyword}: ${text}`;
         }
 
-        return await axios.post('https://oapi.dingtalk.com/robot/send?access_token=' + dingTalk.token, {
+        return await axios.post('https://oapi.dingtalk.com/robot/send?access_token=' + token, {
             msgtype: 'markdown',
             markdown: {title, text},
         }, {

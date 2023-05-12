@@ -9,5 +9,6 @@ app.use(express.urlencoded({limit: '50mb', extended: true}));
 
 app.get('/', (req, res) => res.send('OK'));
 app.post('/sentry', webhookController.sentry);
+app.post('/sentry/:channel', webhookController.sentry);
 
 app.listen(port, () => console.log(`The app listening on port ${port}!`));
